@@ -13,20 +13,25 @@ import {
   MDBInputGroupText,
   MDBInputGroupElement,
   MDBBtn,
+  MDBCol,
+  MDBRow,
+  MDBFooter,
 } from "mdb-react-ui-kit";
 
 function App() {
   const [capital, setcap] = useState();
+  const [noOfTrade, setNoOfTrade] = useState();
+  const [riskPerDay, setrpd] = useState();
   const [riskPerTrade, setrpt] = useState();
   const [entry, setentry] = useState();
   const [stopLoss, setstoploss] = useState();
-  const [risk, setrisk] = useState();
   const [qty, setqty] = useState();
-  function calulateRisk() {
-    setrisk((capital * riskPerTrade) / 100);
+  function riskptrade() {
+    setrpt((capital * riskPerDay) / (noOfTrade * 100));
   }
+
   function quantity() {
-    setqty(risk / (entry - stopLoss));
+    setqty(riskPerTrade / Math.abs(entry - stopLoss));
   }
   return (
     <div className="App">
@@ -71,11 +76,20 @@ function App() {
             </MDBInputGroup>
 
             <MDBInputGroup className="mb-3">
-              <MDBInputGroupText>Risk Per Trade</MDBInputGroupText>
+              <MDBInputGroupText>Number of Trades</MDBInputGroupText>
               <MDBInputGroupElement
                 type="number"
-                value={riskPerTrade}
-                onChange={(e) => setrpt(+e.target.value)}
+                value={noOfTrade}
+                onChange={(e) => setNoOfTrade(+e.target.value)}
+              />
+            </MDBInputGroup>
+
+            <MDBInputGroup className="mb-3">
+              <MDBInputGroupText>Risk Per Day</MDBInputGroupText>
+              <MDBInputGroupElement
+                type="number"
+                value={riskPerDay}
+                onChange={(e) => setrpd(+e.target.value)}
               />
               <MDBInputGroupText>%</MDBInputGroupText>
             </MDBInputGroup>
@@ -97,11 +111,11 @@ function App() {
                 onChange={(e) => setstoploss(+e.target.value)}
               />
             </MDBInputGroup>
-            <MDBBtn className="mx-2 mb-3" color="danger" onClick={calulateRisk}>
-              Risk
+            <MDBBtn className="mx-2 mb-3" color="danger" onClick={riskptrade}>
+              Risk Per Trade
             </MDBBtn>
             <label htmlFor="basic-url" className="mx-2 form-label display-6">
-              {risk}
+              {riskPerTrade}
             </label>
             <br></br>
             <MDBBtn className="mx-2 mb-3" color="primary" onClick={quantity}>
@@ -113,6 +127,33 @@ function App() {
           </MDBContainer>
         </div>
       </header>
+      <MDBFooter color="black" className="font-small pt-4 mt-4">
+        <MDBContainer fluid className="text-center text-md-left">
+          <MDBRow>
+            <MDBCol md="6">
+              <h5 className="title">Stock Risk and Quantity Calculator</h5>
+              <p>Alpha Club Initiative</p>
+            </MDBCol>
+            <MDBCol md="6">
+              {/* <h5 className="title">Links</h5> */}
+              {/* <ul>
+                <li className="list-unstyled">
+                  <a href="#!">Link 1</a>
+                </li>
+              </ul> */}
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+        <div className="footer-copyright text-center py-3">
+          <MDBContainer fluid>
+            &copy; {new Date().getFullYear()} Copyright:{" "}
+            <a href="https://www.instagram.com/leomajor.ravi/">
+              {" "}
+              Ravi Prakash Singh{" "}
+            </a>
+          </MDBContainer>
+        </div>
+      </MDBFooter>
     </div>
   );
 }
