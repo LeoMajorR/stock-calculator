@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import React, { useState } from "react";
