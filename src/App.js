@@ -1,6 +1,8 @@
 import "./App.css";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import React, { useState } from "react";
+import logo from "./logo.jpg";
+// import footerLogo from "./logo2.png";
 import {
   MDBNavbar,
   MDBNavbarNav,
@@ -36,20 +38,25 @@ function App() {
   return (
     <div className="App">
       <header>
-        <MDBNavbar expand="lg" light bgColor="white">
+        <MDBNavbar expand="lg" light bgColor="white" scrolling fixed="top">
           <MDBContainer fluid>
-            <MDBNavbarToggler
+            {/* <MDBNavbarToggler
               aria-controls="navbarExample01"
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
               <MDBIcon fas icon="bars" />
-            </MDBNavbarToggler>
-            <div className="collapse navbar-collapse" id="navbarExample01">
-              <MDBNavbarNav right className="mb-2 mb-lg-0">
+            </MDBNavbarToggler> */}
+            <div className="navbar-expand" id="navbarExample01">
+              <MDBNavbarNav right className="mb-2 mb-lg-0 ">
                 <MDBNavbarItem active>
-                  <MDBNavbarLink aria-current="page" class="display-6" href="#">
-                    Alpha Club IIT Goa
+                  <MDBNavbarLink
+                    aria-current="page"
+                    className="display-6 text-dark"
+                    href="http://alpha-club.tech"
+                  >
+                    <img src={logo} alt="logo" style={{ maxWidth: "4rem" }} />
+                    Alpha Club
                   </MDBNavbarLink>
                 </MDBNavbarItem>
               </MDBNavbarNav>
@@ -57,9 +64,9 @@ function App() {
           </MDBContainer>
         </MDBNavbar>
 
-        <div className="p-5 text-center bg-light">
+        <div className="p-5 text-center bg-light mt-5">
           <h1 className="mb-3">Risk And Quantity Calculator</h1>
-          <MDBContainer className="w-25"></MDBContainer>
+          {/* <MDBContainer className="w-25"></MDBContainer> */}
           <MDBContainer className="w-50 p-3 center">
             <label htmlFor="basic-url" className="form-label">
               Enter your Values
@@ -118,7 +125,7 @@ function App() {
               {riskPerTrade}
             </label>
             <br></br>
-            <MDBBtn className="mx-2 mb-3" color="primary" onClick={quantity}>
+            <MDBBtn className="mx-2" color="primary" onClick={quantity}>
               Quantity
             </MDBBtn>
             <label htmlFor="basic-url" className="mx-2 form-label display-6">
@@ -127,20 +134,47 @@ function App() {
           </MDBContainer>
         </div>
       </header>
-      <MDBFooter color="black" className="font-small pt-4 mt-4">
-        <MDBContainer fluid className="text-center text-md-left">
+      <MDBFooter
+        color="secondary-color"
+        className="font-small pt-4 mt-1 footer text-light"
+      >
+        <MDBContainer fluid className="text-md-left">
           <MDBRow>
             <MDBCol md="6">
-              <h5 className="title">Stock Risk and Quantity Calculator</h5>
-              <p>Alpha Club Initiative</p>
+              <div className="w-75">
+                <h4 className="title">About Us</h4>
+                <p>
+                  Alpha Club is community of finance fanatics consisting of
+                  highly dedicated indidviduals to help everyone from those with
+                  no background in finance to those coming from finance looking
+                  to switch focus within the industry.
+                </p>
+              </div>
             </MDBCol>
+            {/* <MDBCol md="0"></MDBCol> */}
             <MDBCol md="6">
-              {/* <h5 className="title">Links</h5> */}
-              {/* <ul>
+              {/* <img src={footerLogo} alt="" style={{ maxWidth: "20rem" }} /> */}
+              <h5 className="title">Follow Us</h5>
+              <ul>
                 <li className="list-unstyled">
-                  <a href="#!">Link 1</a>
+                  <a href="https://in.linkedin.com/company/alpha-iitgoa">
+                    <MDBIcon fab icon="linkedin" className="me-1" />
+                    LinkedIn
+                  </a>
                 </li>
-              </ul> */}
+                <li className="list-unstyled">
+                  <a href="https://www.instagram.com/alpha_iitgoa/">
+                    <MDBIcon fab icon="instagram" className="me-1" />
+                    Instagram
+                  </a>
+                </li>
+                <li className="list-unstyled">
+                  <a href="https://alpha-club.tech/#">
+                    <MDBIcon fab icon="twitter" className="me-1" />
+                    Twitter
+                  </a>
+                </li>
+              </ul>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
